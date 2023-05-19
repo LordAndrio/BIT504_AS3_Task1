@@ -4,6 +4,8 @@ public class Settings {
 	public static final int WINDOW_WIDTH = 400;
 	public static final int WINDOW_HEIGHT = 500;
 	public static final int TOTAL_BRICKS = 20;
+	public static final int TOTAL_BRICKS_ROW = 4;
+	public static final int TOTAL_BRICKS_COL = 5;
 	public static final int BRICK_VERT_PADDING = 50;
 	public static final int BRICK_HEIGHT = 30;
 	public static final int BRICK_HORI_PADDING = 50;
@@ -14,6 +16,7 @@ public class Settings {
 	public static final int INITIAL_PADDLE_Y = 370;
 	public static final int PADDLE_WIDTH = 100;
 	public static final int PADDLE_HEIGHT = 15;
+	public static final int PADDLE_VELOCITY = 50;
 	public static final int BALL_WIDTH = 10;
 	public static final int BALL_HEIGHT = 10;
 	public static final int MESSAGE_POSITION = 270;
