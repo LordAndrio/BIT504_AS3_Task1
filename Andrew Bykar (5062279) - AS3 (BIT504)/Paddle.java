@@ -31,8 +31,8 @@ public class Paddle extends Sprite {
 			}
 			
 			// Stop when hitting the right edge of the screen
-			if(x >= Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH) {
-				x = (Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH);
+			if(x >= Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH_BUFFER) {
+				x = (Settings.WINDOW_WIDTH - Settings.PADDLE_WIDTH_BUFFER);
 			}
 
 	}
@@ -44,5 +44,9 @@ public class Paddle extends Sprite {
 	public void setXVelocity(int vel) {
 		// TODO: Set x velocity
 		this.xVelocity = vel;
+	}
+	
+	public int getXVelocity() {
+		return xVelocity;
 	}
 }

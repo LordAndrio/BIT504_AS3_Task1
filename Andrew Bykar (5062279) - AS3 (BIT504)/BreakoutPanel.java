@@ -66,9 +66,22 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 	private void update() {
 		if(gameRunning) {
 			// TODO: Update the ball and paddle
+			moveObject(ball);
+			moveObject(paddle);
 			collisions();
 			repaint();
 		}
+	}
+	
+	public void moveObject(Ball obj) {
+		obj.setX(obj.getX() + obj.getXVelocity());
+		obj.setY(obj.getY() + obj.getYVelocity());
+		ball.update();
+	}
+	
+	public void moveObject(Paddle obj) {
+		obj.setX(obj.getX() + obj.getXVelocity());
+		paddle.update();
 	}
 	
 	private void gameOver() {
@@ -165,14 +178,14 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
         // Draw lives left
         // TODO: Draw lives left in the top left hand corner
         if(livesLeftString != null) {
-        	g.setFont(new Font("Arial", Font.BOLD, 18));
+        	g.setFont(new Font("Arial", Font.BOLD, 20));
         	int messageWidthLives = g.getFontMetrics().stringWidth(livesLeftString);
-        	g.drawString(screenMessage, (Settings.WINDOW_WIDTH / 6) - (messageWidthLives / 2), Settings.MESSAGE_POSITION/4);
+        	g.drawString(livesLeftString, Settings.LIVES_POSITION_X, Settings.LIVES_POSITION_Y);
         }
         
         // Draw screen message
         if(screenMessage != null) {
-        	g.setFont(new Font("Arial", Font.BOLD, 18));
+        	g.setFont(new Font("Arial", Font.BOLD, 15));
         	int messageWidthScreen = g.getFontMetrics().stringWidth(screenMessage);
         	g.drawString(screenMessage, (Settings.WINDOW_WIDTH / 2) - (messageWidthScreen / 2), Settings.MESSAGE_POSITION);
         }
