@@ -30,9 +30,13 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 		timer.start();
 		
 		// TODO: Create a new ball object and assign it to the appropriate variable
+		ball = new Ball();
 		// TODO: Create a new paddle object and assign it to the appropriate variable
+		paddle = new Paddle();
 		// TODO: Create a new bricks array (Use Settings.TOTAL_BRICKS)
+		bricks = new Brick[Settings.TOTAL_BRICKS];
 		// TODO: Call the createBricks() method
+		createBricks();
 	}
 	
 	private void createBricks() {
@@ -52,23 +56,43 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 	
 	private void paintBricks(Graphics g) {
 		// TODO: Loop through the bricks and call the paint() method
+		/*for (int row = 0; row < Settings.TOTAL_BRICKS_ROW; ++row) {          
+			for (int col = 0; col < Settings.TOTAL_BRICKS_COL; ++col) {
+				bricks[Settings.TOTAL_BRICKS].paint(g);
+			}
+		}*/
 	}
 	
 	private void update() {
 		if(gameRunning) {
 			// TODO: Update the ball and paddle
+			moveObject(ball);
+			moveObject(paddle);
 			collisions();
 			repaint();
 		}
 	}
 	
+	public void moveObject(Ball obj) {
+		obj.setX(obj.getX() + obj.getXVelocity());
+		obj.setY(obj.getY() + obj.getYVelocity());
+		ball.update();
+	}
+	
+	public void moveObject(Paddle obj) {
+		obj.setX(obj.getX() + obj.getXVelocity());
+		paddle.update();
+	}
+	
 	private void gameOver() {
 		// TODO: Set screen message
+		screenMessage = "Game Over!";
 		stopGame();
 	}
 	
 	private void gameWon() {
 		// TODO: Set screen message
+		screenMessage = "You Win!";
 		stopGame();
 	}
 	
@@ -149,26 +173,42 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
         ball.paint(g);
         paddle.paint(g);
         paintBricks(g);
+        String livesLeftString = Integer.toString(livesLeft);
         
         // Draw lives left
         // TODO: Draw lives left in the top left hand corner
+        if(livesLeftString != null) {
+        	g.setFont(new Font("Arial", Font.BOLD, 20));
+        	int messageWidthLives = g.getFontMetrics().stringWidth(livesLeftString);
+        	g.drawString(livesLeftString, Settings.LIVES_POSITION_X, Settings.LIVES_POSITION_Y);
+        }
         
         // Draw screen message
         if(screenMessage != null) {
-        	g.setFont(new Font("Arial", Font.BOLD, 18));
-        	int messageWidth = g.getFontMetrics().stringWidth(screenMessage);
-        	g.drawString(screenMessage, (Settings.WINDOW_WIDTH / 2) - (messageWidth / 2), Settings.MESSAGE_POSITION);
+        	g.setFont(new Font("Arial", Font.BOLD, 15));
+        	int messageWidthScreen = g.getFontMetrics().stringWidth(screenMessage);
+        	g.drawString(screenMessage, (Settings.WINDOW_WIDTH / 2) - (messageWidthScreen / 2), Settings.MESSAGE_POSITION);
         }
     }
 
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO: Set the velocity of the paddle depending on whether the player is pressing left or right
+		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+			paddle.setXVelocity(-Settings.PADDLE_VELOCITY);
+		}
+		
+		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			paddle.setXVelocity(Settings.PADDLE_VELOCITY);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO: Set the velocity of the paddle after the player has released the keys
+		if(e.getKeyCode() == KeyEvent.VK_LEFT || e.getKeyCode() == KeyEvent.VK_RIGHT) {
+			paddle.setXVelocity(0);
+		}
 	}
 
 	@Override
