@@ -1,5 +1,4 @@
 import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -56,11 +55,13 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
 	
 	private void paintBricks(Graphics g) {
 		// TODO: Loop through the bricks and call the paint() method
-		/*for (int row = 0; row < Settings.TOTAL_BRICKS_ROW; ++row) {          
-			for (int col = 0; col < Settings.TOTAL_BRICKS_COL; ++col) {
-				bricks[Settings.TOTAL_BRICKS].paint(g);
+		int counter = 0;
+		for(int x = 0; x < 4; x++) {
+			for(int y = 0; y < 5; y++) {
+				bricks[counter].paint(g);
+				counter++;
 			}
-		}*/
+		}
 	}
 	
 	private void update() {
@@ -179,7 +180,6 @@ public class BreakoutPanel extends JPanel implements ActionListener, KeyListener
         // TODO: Draw lives left in the top left hand corner
         if(livesLeftString != null) {
         	g.setFont(new Font("Arial", Font.BOLD, 20));
-        	int messageWidthLives = g.getFontMetrics().stringWidth(livesLeftString);
         	g.drawString(livesLeftString, Settings.LIVES_POSITION_X, Settings.LIVES_POSITION_Y);
         }
         
