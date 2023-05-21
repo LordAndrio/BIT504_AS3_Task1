@@ -1,5 +1,4 @@
 import java.awt.Color;
-
 import javax.swing.JFrame;
 
 public class Breakout extends JFrame{
@@ -13,29 +12,29 @@ public class Breakout extends JFrame{
 	int WINDOW_HEIGHT = Settings.WINDOW_HEIGHT;
 	int WINDOW_WIDTH = Settings.WINDOW_WIDTH;
 	
+	
+	// Constructor to create the window and the panel for the program to run in
 	public Breakout() {
-		// TODO: Set the size of the screen (use Settings.WINDOW_WIDTH/HEIGHT)
+		// Define window settings
 		setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-		// TODO: Set the title
 		setTitle(WINDOW_TITLE);
-		// TODO: Set the background colour to white
 		setBackground(BACKGROUND_COLOR);
-		// TODO: Set resizable to false
 		setResizable(false);
-
+		setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
+        
+        // Add panel to host the game in the window
         panel = new BreakoutPanel(this);
         add(panel);
-		// TODO: Set visible to true
-        setVisible(true);
 	}
-
+	
+	
+	// Run the program
 	public static void main(String[] args) {
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
 	        	 new Breakout();	
 	         }
 		});
-
 	}
 }

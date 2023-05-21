@@ -4,33 +4,39 @@ public class Brick extends Sprite {
 	
 	private boolean broken = false;
 	
+	// Constructor using parameters integer x & integer y
+	// Define all the attributes for brick creation
 	public Brick(int x, int y) {
-		// TODO: Set x using the parameter
 		this.x = x;
-		// TODO: Set y using the parameter
 		this.y = y;
-		// TODO: Set the width and height of the brick using Settings.BRICK_WIDTH/HEIGHT
 		this.width = Settings.BRICK_WIDTH;
 		this.height = Settings.BRICK_HEIGHT;
 	}
 
+	
+	// Returns whether a brick is broken or not so that it can be removed from play
 	public boolean isBroken() {
 		boolean checkBroken;
 		
 		if (broken) {
 			checkBroken = true;
 		}
+		
 		else {
 			checkBroken = false;
 		}
 		
-		return checkBroken;	// TODO: Return the correct variable
+		return checkBroken;
 	}
+	
+	
+	// Defines a brick as broken
 	public void setBroken(boolean b) {
-		// TODO: Set the broken variable using the parameter given
 		this.broken = b;
 	}
 	
+	
+	// Paints the brick unless it has been broken
 	public void paint(Graphics g) {
 		if(!broken) {
 			g.fillRect(x, y, Settings.BRICK_WIDTH, Settings.BRICK_HEIGHT);
